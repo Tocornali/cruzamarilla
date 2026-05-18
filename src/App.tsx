@@ -35,10 +35,7 @@ const PHARMACY_SKUS: PreconfiguredSku[] = [
   { sku: 'BOT-CUR-100', name: 'Apósitos Adhesivos Curitas (Caja x100)', category: 'Botiquín e Higiene' },
   { sku: 'BOT-ALG-100', name: 'Algodón Hidrófilo Premium (Paquete 100g)', category: 'Botiquín e Higiene' },
   { sku: 'PRO-MSK-10', name: 'Mascarilla KN95 Certificada (Caja x10)', category: 'Botiquín e Higiene' },
-  { sku: 'INS-GAS-50', name: 'Gasa Estéril 10x10cm (Caja x50 sobres)', category: 'Botiquín e Higiene' },
-  { sku: 'EQU-TEN-DIG', name: 'Monitor de Presión Arterial Digital', category: 'Equipos de Diagnóstico' },
-  { sku: 'EQU-TER-INF', name: 'Termómetro Infrarrojo Frontal Sin Contacto', category: 'Equipos de Diagnóstico' },
-  { sku: 'EQU-OXI-PRO', name: 'Oxímetro de Pulso Profesional', category: 'Equipos de Diagnóstico' }
+  { sku: 'INS-GAS-50', name: 'Gasa Estéril 10x10cm (Caja x50 sobres)', category: 'Botiquín e Higiene' }
 ];
 
 interface CartItem {
@@ -205,7 +202,7 @@ export default function App() {
     return matchesCategory && matchesSearch;
   });
 
-  const categories = ['Todos', 'Medicamentos', 'Botiquín e Higiene', 'Equipos de Diagnóstico'];
+  const categories = ['Todos', 'Medicamentos', 'Botiquín e Higiene'];
 
   return (
     <div className={`min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary selection:text-primary-foreground pb-12 transition-colors duration-300 ${isDarkMode ? 'dark' : ''}`}>

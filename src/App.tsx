@@ -62,9 +62,9 @@ const getCleanPrice = (rawPrice: number | undefined): number => {
 };
 
 export default function App() {
-  // Configuración fija de API
-  const apiKey = 'ms_live_bbd5499b466f47304b69128c6bf5c26ea21d5c9b6a9e18b014c2e77c55813190';
-  const baseUrl = 'http://localhost:3000/api/v1/productos';
+  // Configuración de API desde Variables de Entorno (.env)
+  const apiKey = import.meta.env.VITE_API_KEY || 'ms_live_bbd5499b466f47304b69128c6bf5c26ea21d5c9b6a9e18b014c2e77c55813190';
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api/v1/productos';
   
   // Modo Oscuro / Claro
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);

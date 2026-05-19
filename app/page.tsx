@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { 
   ShoppingCart, Trash2, Plus, Minus, Search, Filter, 
@@ -32,7 +34,7 @@ const PHARMACY_SKUS: PreconfiguredSku[] = [
   { sku: 'PHA-PAR-1000-10', name: 'Paracetamol 1g (10 Comprimidos)', category: 'Medicamentos' },
   { sku: 'HIG-ALC-250', name: 'Alcohol Gel 70% (Botella 250ml)', category: 'Botiquín e Higiene' },
   { sku: 'BOT-CUR-20', name: 'Apósitos Adhesivos Curitas (Caja x20)', category: 'Botiquín e Higiene' },
-  { sku: 'BOT-CUR-100', name: 'Apósitos Adhesivos Curitas (Caja x100)', category: 'Botiquín e Higiene' },
+  { sku: 'BOT-CUR-100', name: 'Apósitos Adhesivos Curitas (Caja x100)', category: 'Botiquín e Humedad' },
   { sku: 'BOT-ALG-100', name: 'Algodón Hidrófilo Premium (Paquete 100g)', category: 'Botiquín e Higiene' },
   { sku: 'PRO-MSK-10', name: 'Mascarilla KN95 Certificada (Caja x10)', category: 'Botiquín e Higiene' },
   { sku: 'INS-GAS-50', name: 'Gasa Estéril 10x10cm (Caja x50 sobres)', category: 'Botiquín e Higiene' }
@@ -59,8 +61,8 @@ const getCleanPrice = (rawPrice: number | undefined): number => {
 };
 
 export default function App() {
-  // Configuración de API desde Variables de Entorno (.env)
-  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api/v1/catalogo-publico';
+  // Apuntar a la ruta de API interna de Next.js
+  const baseUrl = '/api/catalogo';
   
   // Modo Oscuro / Claro
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
@@ -85,7 +87,7 @@ export default function App() {
 
     setLoadingSkus(prev => ({ ...prev, [cleanSku]: true }));
 
-    const targetUrl = `${baseUrl.replace(/\/$/, '')}/${cleanSku}`;
+    const targetUrl = `${baseUrl}/${cleanSku}`;
 
     try {
       const response = await fetch(targetUrl, {

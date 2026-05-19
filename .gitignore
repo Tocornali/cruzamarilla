@@ -17,6 +17,7 @@ dist-ssr/
 .vite/
 build/
 out/
+.next/
 
 # Environment variables
 .env

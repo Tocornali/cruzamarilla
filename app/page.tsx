@@ -60,6 +60,11 @@ const getCleanPrice = (rawPrice: number | undefined): number => {
   return Math.ceil(rawPrice / 100) * 100;
 };
 
+// Función para generar un ID de pedido único de forma externa (evita warning de pureza en React 19)
+const generateOrderId = (): string => {
+  return `PED-${Math.floor(100000 + Math.random() * 900000)}`;
+};
+
 export default function App() {
   // Apuntar a la ruta de API interna de Next.js
   const baseUrl = '/api/catalogo';
@@ -182,7 +187,7 @@ export default function App() {
     const totalFacturado = subtotalNeto + iva;
 
     const newOrder: ConfirmedOrder = {
-      orderId: `PED-${Math.floor(100000 + Math.random() * 900000)}`,
+      orderId: generateOrderId(),
       timestamp: new Date().toLocaleString('es-CL'),
       items: [...cartItemsList],
       subtotalNeto,
@@ -567,7 +572,7 @@ export default function App() {
                         </div>
                       ) : (
                         <div className="flex flex-col items-center justify-center py-6 text-muted-foreground text-center text-xs">
-                          Presiona "Agregar al Carrito" para cargar este producto desde la API.
+                          Presiona &quot;Agregar al Carrito&quot; para cargar este producto desde la API.
                         </div>
                       )}
                     </div>
@@ -641,7 +646,7 @@ export default function App() {
                 <div className="flex flex-col items-center justify-center h-full gap-4 text-muted-foreground text-center py-12">
                   <ShoppingCart className="w-16 h-16 text-muted-foreground/60" />
                   <p className="text-sm max-w-[240px] !m-0">
-                    Tu carrito está vacío. Selecciona "Agregar al Carrito" en cualquier producto del catálogo.
+                    Tu carrito está vacío. Selecciona &quot;Agregar al Carrito&quot; en cualquier producto del catálogo.
                   </p>
                 </div>
               ) : (
